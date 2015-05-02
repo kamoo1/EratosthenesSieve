@@ -36,13 +36,13 @@ public class PrimeUtil {
     
     // Check input correctness
     if ( size <= 0 ) {
-      throw new Exception("Min number must be smaller than max number");
+      throw new Exception("Max number must greater than 2.");
     }
     
     
     // Initialize candidates with true as default value
     ArrayList<Boolean> candidates = 
-        new ArrayList<Boolean>( Collections.nCopies(size + 1, true) );
+        new ArrayList<Boolean>( Collections.nCopies(size, true) );
     
     
     // Main loop
@@ -50,7 +50,7 @@ public class PrimeUtil {
       
       int i = currentPrime;
       // Remove all products of currentPrime
-      while( (currentRemove = currentPrime * i++) < max){
+      while( (currentRemove = currentPrime * i++) <= max){
         candidates.set(currentRemove - FIRST_PRIME, false);
       }
       
@@ -74,7 +74,7 @@ public class PrimeUtil {
     
     // Collect all primes from candidates
     ArrayList<Integer> results = new ArrayList<Integer>();
-    for ( int i = 0; i < max - FIRST_PRIME; i++ ){
+    for ( int i = 0; i < size; i++ ){
       if ( candidates.get(i) ){
         results.add( i + FIRST_PRIME );
       }
